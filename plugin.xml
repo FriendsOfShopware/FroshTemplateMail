@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    <label lang="de">FroshTemplateMail</label>
+    <label lang="en">FroshTemplateMail</label>
+    <version>1.0.0</version>
+    <copyright>Friends of Shopware</copyright>
+    <license>MIT</license>
+    <link>https://friendsofshopware.github.io/</link>
+    <author>Friends of Shopware</author>
+    <description>
+        <![CDATA[
+            Store emails in theme and allow translations using snippets<br><br>
+
+            Example Mail sORDER<br>
+            themes/Frontend/MyTheme/email/sORDER.html.tpl <== HTML Template<br>
+            themes/Frontend/MyTheme/email/sORDER.text.tpl <== Text Template<br>
+            themes/Frontend/MyTheme/email/sORDER.subject.tpl <== Subject Template
+        ]]>
+    </description>
+</plugin>
