@@ -35,6 +35,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
      * @return \Enlight_Components_Mail
      * @author Soner Sayakci <shyim@posteo.de>
      * @throws \Enlight_Exception
+     * @throws \Exception
      */
     public function createMail($mailModel, $context = [], $shop = null, $overrideConfig = [])
     {
@@ -62,6 +63,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
      * @param Mail $mailModel
      * @author Soner Sayakci <shyim@posteo.de>
      * @throws \Enlight_Event_Exception
+     * @throws \Exception
      */
     private function updateMail(Mail $mailModel)
     {
@@ -71,17 +73,26 @@ class TemplateMail extends \Shopware_Components_TemplateMail
         $textFile = sprintf('email/%s.text.tpl', $mailModel->getName());
         $subjectFile = sprintf('email/%s.subject.tpl', $mailModel->getName());
 
+        $customMailTemplate = false;
+
         if ($this->getTemplate()->templateExists($htmlFile)) {
             $mailModel->setIsHtml(true);
             $mailModel->setContentHtml(sprintf('{include file="%s"}', $htmlFile));
+            $customMailTemplate = true;
         }
 
         if ($this->getTemplate()->templateExists($textFile)) {
             $mailModel->setContent(sprintf('{include file="%s"}', $textFile));
+            $customMailTemplate = true;
         }
 
         if ($this->getTemplate()->templateExists($subjectFile)) {
             $mailModel->setContent(sprintf('{include file="%s"}', $subjectFile));
+            $customMailTemplate = true;
+        }
+
+        if ($customMailTemplate) {
+            $this->getTranslationReader()->delete(null, 'config_mails', $mailModel->getId());
         }
     }
 
@@ -92,7 +103,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
     private function updateTemplateDirs()
     {
         $templateDirs = $this->themeInheritance->getTemplateDirectories($this->getShop()->getTemplate());
-        $this->getStringCompiler()->getView()->setTemplateDir($templateDirs);
+        $this->getTemplate()->setTemplateDir($templateDirs);
     }
 
     /**
