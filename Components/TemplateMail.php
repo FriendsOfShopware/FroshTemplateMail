@@ -87,7 +87,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
         }
 
         if ($this->getTemplate()->templateExists($subjectFile)) {
-            $mailModel->setContent(sprintf('{include file="%s"}', $subjectFile));
+            $mailModel->setSubject(sprintf('{include file="%s"}', $subjectFile));
             $customMailTemplate = true;
         }
 

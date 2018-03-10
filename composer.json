@@ -1,0 +1,19 @@
+{
+  "name": "frosh/templatemail",
+  "keywords": [
+    "shopware",
+    "templatemail"
+  ],
+  "description": "Store mail templates in theme",
+  "license": "MIT",
+  "type": "shopware-plugin",
+  "extra": {
+    "installer-name": "FroshTemplateMail"
+  },
+  "require": {
+    "php": "^7.0"
+  },
+  "scripts": {
+    "test": "phpunit -c tests"
+  }
+}
