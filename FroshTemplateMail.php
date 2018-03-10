@@ -8,12 +8,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * Class FroshTemplateMail
- * @package FroshTemplateMail
  */
 class FroshTemplateMail extends Plugin
 {
     /**
      * @param ContainerBuilder $container
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     public function build(ContainerBuilder $container)

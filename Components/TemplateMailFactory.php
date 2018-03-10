@@ -8,7 +8,9 @@ class TemplateMailFactory
 {
     /**
      * @param Container $container
+     *
      * @return \Shopware_Components_TemplateMail
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     public function factory(Container $container)

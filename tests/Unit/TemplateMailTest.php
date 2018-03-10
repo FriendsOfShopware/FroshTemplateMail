@@ -11,6 +11,7 @@ use Shopware\Models\Shop\Template;
 
 /**
  * Class TemplateMailTest
+ *
  * @author Soner Sayakci <shyim@posteo.de>
  */
 class TemplateMailTest extends TestCase
@@ -54,10 +55,9 @@ class TemplateMailTest extends TestCase
         $mail->setContentHtml('html');
         $mail->setContent('text');
 
-
         $this->templateMail->createMail($mail, [
             'sShopUrl' => 'lol',
-            'sShopName' => 'lol'
+            'sShopName' => 'lol',
         ]);
 
         $this->assertEquals('html', $mail->getContentHtml());
@@ -76,10 +76,9 @@ class TemplateMailTest extends TestCase
         $mail->setContentHtml('html');
         $mail->setContent('text');
 
-
         $sendMailObject = $this->templateMail->createMail($mail, [
             'sShopUrl' => 'lol',
-            'sShopName' => 'lol'
+            'sShopName' => 'lol',
         ]);
 
         $this->assertEquals('{include file="email/sBIRTHDAY.html.tpl"}', $mail->getContentHtml());
@@ -92,6 +91,7 @@ class TemplateMailTest extends TestCase
     /**
      * @throws Enlight_Exception
      * @throws Exception
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     public function testThemeMailTemplateWithVariables()
@@ -107,7 +107,7 @@ class TemplateMailTest extends TestCase
         $sendMailObject = $this->templateMail->createMail($mail, [
             'sShopUrl' => 'lol',
             'sShopName' => 'lol',
-            'sVariableTest' => $testString
+            'sVariableTest' => $testString,
         ]);
 
         $this->assertEquals('{include file="email/variables.html.tpl"}', $mail->getContentHtml());
@@ -120,6 +120,7 @@ class TemplateMailTest extends TestCase
     /**
      * @throws Enlight_Exception
      * @throws Exception
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     public function testThemeMailTemplateAllTemplates()
@@ -132,7 +133,7 @@ class TemplateMailTest extends TestCase
 
         $sendMailObject = $this->templateMail->createMail($mail, [
             'sShopUrl' => 'lol',
-            'sShopName' => 'lol'
+            'sShopName' => 'lol',
         ]);
 
         $this->assertEquals('{include file="email/all_files_should_be_exist.html.tpl"}', $mail->getContentHtml());
@@ -146,7 +147,9 @@ class TemplateMailTest extends TestCase
     /**
      * @param $shopId
      * @param $templateStub
+     *
      * @return PHPUnit_Framework_MockObject_MockObject
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     private function createShopMock($shopId, $templateStub)
@@ -160,6 +163,7 @@ class TemplateMailTest extends TestCase
 
     /**
      * @return PHPUnit_Framework_MockObject_MockObject
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     private function createTemplateMock()
@@ -169,6 +173,7 @@ class TemplateMailTest extends TestCase
 
     /**
      * @return PHPUnit_Framework_MockObject_MockObject
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     private function createThemeInheritance()

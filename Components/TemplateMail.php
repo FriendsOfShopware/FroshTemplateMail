@@ -7,7 +7,7 @@ use Shopware\Models\Mail\Mail;
 
 /**
  * Class TemplateMail
- * @package FroshTemplateMail\Components
+ *
  * @author Soner Sayakci <shyim@posteo.de>
  */
 class TemplateMail extends \Shopware_Components_TemplateMail
@@ -19,7 +19,9 @@ class TemplateMail extends \Shopware_Components_TemplateMail
 
     /**
      * TemplateMail constructor.
+     *
      * @param Inheritance $inheritance
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     public function __construct(Inheritance $inheritance)
@@ -29,13 +31,16 @@ class TemplateMail extends \Shopware_Components_TemplateMail
 
     /**
      * @param \Shopware\Models\Mail\Mail|string $mailModel
-     * @param array $context
-     * @param null $shop
-     * @param array $overrideConfig
-     * @return \Enlight_Components_Mail
-     * @author Soner Sayakci <shyim@posteo.de>
+     * @param array                             $context
+     * @param null                              $shop
+     * @param array                             $overrideConfig
+     *
      * @throws \Enlight_Exception
      * @throws \Exception
+     *
+     * @return \Enlight_Components_Mail
+     *
+     * @author Soner Sayakci <shyim@posteo.de>
      */
     public function createMail($mailModel, $context = [], $shop = null, $overrideConfig = [])
     {
@@ -48,7 +53,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
             }
         }
 
-        if (null !== $shop) {
+        if ($shop !== null) {
             $this->setShop($shop);
         }
 
@@ -61,7 +66,9 @@ class TemplateMail extends \Shopware_Components_TemplateMail
 
     /**
      * @param Mail $mailModel
+     *
      * @author Soner Sayakci <shyim@posteo.de>
+     *
      * @throws \Enlight_Event_Exception
      * @throws \Exception
      */
@@ -98,6 +105,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
 
     /**
      * @throws \Enlight_Event_Exception
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     private function updateTemplateDirs()
@@ -108,6 +116,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
 
     /**
      * @return \Enlight_Template_Manager
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     private function getTemplate()
