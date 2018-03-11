@@ -22,9 +22,15 @@ Example Mail **sORDER**
   * themes/Frontend/MyTheme/email/sORDER.text.tpl
 * Subject Template
   * themes/Frontend/MyTheme/email/sORDER.subject.tpl
+
+
+## Loaders
+
+### Available loaders
+
+* [MJML](https://github.com/FriendsOfShopware/FroshTemplateMailMjml)
   
-  
-## Write your own loader
+### Write your own loader
 
 You can also implement your custom loader. Create a new class and implement the interface `FroshTemplateMail/Components/Loader/MailLoaderInterface` and register it using tag `frosh_template_mail.loader`.
 
