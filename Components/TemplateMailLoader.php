@@ -2,13 +2,14 @@
 
 namespace FroshTemplateMail\Components;
 
+use Enlight_Template_Manager as Template;
 use FroshTemplateMail\Components\Loader\MailLoaderInterface;
 use RuntimeException;
 use Shopware\Models\Mail\Mail;
-use Enlight_Template_Manager as Template;
 
 /**
  * Class TemplateMailLoader
+ *
  * @author Soner Sayakci <shyim@posteo.de>
  */
 class TemplateMailLoader
@@ -25,7 +26,9 @@ class TemplateMailLoader
 
     /**
      * TemplateMailLoader constructor.
+     *
      * @author Soner Sayakci <shyim@posteo.de>
+     *
      * @param MailLoaderInterface[] $loaders
      */
     public function __construct(array $loaders = [])
@@ -42,12 +45,14 @@ class TemplateMailLoader
     }
 
     /**
-     * @param Mail $mail
+     * @param Mail     $mail
      * @param Template $template
+     *
      * @author Soner Sayakci <shyim@posteo.de>
+     *
      * @return bool
      */
-    public function loadMail(Mail $mail, Template $template) : bool
+    public function loadMail(Mail $mail, Template $template): bool
     {
         $this->template = $template;
 
@@ -74,8 +79,10 @@ class TemplateMailLoader
 
     /**
      * @param string $type
-     * @param Mail $mail
+     * @param Mail   $mail
+     *
      * @return string
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     private function load(string $type, Mail $mail)
@@ -92,10 +99,11 @@ class TemplateMailLoader
         return false;
     }
 
-
     /**
      * @param string $fileName
+     *
      * @author Soner Sayakci <shyim@posteo.de>
+     *
      * @return bool|string
      */
     private function fileExists(string $fileName)

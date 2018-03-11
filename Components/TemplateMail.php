@@ -2,7 +2,6 @@
 
 namespace FroshTemplateMail\Components;
 
-use Doctrine\Common\Util\Debug;
 use Shopware\Components\Theme\Inheritance;
 use Shopware\Models\Mail\Mail;
 
@@ -26,9 +25,9 @@ class TemplateMail extends \Shopware_Components_TemplateMail
     /**
      * TemplateMail constructor.
      *
-     * @param Inheritance $inheritance
-     *
+     * @param Inheritance        $inheritance
      * @param TemplateMailLoader $loader
+     *
      * @author Soner Sayakci <shyim@posteo.de>
      */
     public function __construct(Inheritance $inheritance, TemplateMailLoader $loader)

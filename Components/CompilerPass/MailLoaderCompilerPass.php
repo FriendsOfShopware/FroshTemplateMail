@@ -1,6 +1,5 @@
 <?php
 
-
 namespace FroshTemplateMail\Components\CompilerPass;
 
 use Shopware\Components\DependencyInjection\Compiler\TagReplaceTrait;
@@ -9,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * Class MailLoaderCompilerPass
+ *
  * @author Soner Sayakci <shyim@posteo.de>
  */
 class MailLoaderCompilerPass implements CompilerPassInterface
