@@ -2,6 +2,7 @@
 
 namespace FroshTemplateMail\Components;
 
+use Doctrine\Common\Util\Debug;
 use Shopware\Components\Theme\Inheritance;
 use Shopware\Models\Mail\Mail;
 
@@ -18,15 +19,22 @@ class TemplateMail extends \Shopware_Components_TemplateMail
     private $themeInheritance;
 
     /**
+     * @var TemplateMailLoader
+     */
+    private $loader;
+
+    /**
      * TemplateMail constructor.
      *
      * @param Inheritance $inheritance
      *
+     * @param TemplateMailLoader $loader
      * @author Soner Sayakci <shyim@posteo.de>
      */
-    public function __construct(Inheritance $inheritance)
+    public function __construct(Inheritance $inheritance, TemplateMailLoader $loader)
     {
         $this->themeInheritance = $inheritance;
+        $this->loader = $loader;
     }
 
     /**
@@ -76,29 +84,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
     {
         $this->updateTemplateDirs();
 
-        $htmlFile = sprintf('email/%s.html.tpl', $mailModel->getName());
-        $textFile = sprintf('email/%s.text.tpl', $mailModel->getName());
-        $subjectFile = sprintf('email/%s.subject.tpl', $mailModel->getName());
-
-        $customMailTemplate = false;
-
-        if ($this->getTemplate()->templateExists($htmlFile)) {
-            $mailModel->setIsHtml(true);
-            $mailModel->setContentHtml(sprintf('{include file="%s"}', $htmlFile));
-            $customMailTemplate = true;
-        }
-
-        if ($this->getTemplate()->templateExists($textFile)) {
-            $mailModel->setContent(sprintf('{include file="%s"}', $textFile));
-            $customMailTemplate = true;
-        }
-
-        if ($this->getTemplate()->templateExists($subjectFile)) {
-            $mailModel->setSubject(sprintf('{include file="%s"}', $subjectFile));
-            $customMailTemplate = true;
-        }
-
-        if ($customMailTemplate) {
+        if ($this->loader->loadMail($mailModel, $this->getTemplate())) {
             $this->getTranslationReader()->delete(null, 'config_mails', $mailModel->getId());
         }
     }

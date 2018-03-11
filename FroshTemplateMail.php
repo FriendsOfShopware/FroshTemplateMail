@@ -2,6 +2,7 @@
 
 namespace FroshTemplateMail;
 
+use FroshTemplateMail\Components\CompilerPass\MailLoaderCompilerPass;
 use FroshTemplateMail\Components\CompilerPass\ReplaceTemplateMailFactoryPass;
 use Shopware\Components\Plugin;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -20,5 +21,6 @@ class FroshTemplateMail extends Plugin
     {
         parent::build($container);
         $container->addCompilerPass(new ReplaceTemplateMailFactoryPass());
+        $container->addCompilerPass(new MailLoaderCompilerPass());
     }
 }

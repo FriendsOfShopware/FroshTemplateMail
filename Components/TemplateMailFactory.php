@@ -20,7 +20,10 @@ class TemplateMailFactory
         $stringCompiler = new \Shopware_Components_StringCompiler(
             $container->get('Template')
         );
-        $mailer = new TemplateMail($container->get('theme_inheritance'));
+        $mailer = new TemplateMail(
+            $container->get('theme_inheritance'),
+            $container->get('frosh_template_mail.template_mail_loader')
+        );
         if ($container->initialized('Shop')) {
             $mailer->setShop($container->get('Shop'));
         }
