@@ -38,7 +38,7 @@ class TemplateMailTest extends TestCase
 
         $stringCompiler = new Shopware_Components_StringCompiler(Shopware()->Template());
 
-        $this->templateMail = new TemplateMail($this->createThemeInheritance());
+        $this->templateMail = new TemplateMail($this->createThemeInheritance(), Shopware()->Container()->get('frosh_template_mail.template_mail_loader'));
         $this->templateMail->setShop($this->createShopMock(1, $this->createTemplateMock()));
         $this->templateMail->setModelManager($manager);
         $this->templateMail->setStringCompiler($stringCompiler);
