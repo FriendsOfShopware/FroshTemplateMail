@@ -5,6 +5,7 @@ This plugin allows to store the mails in theme instead of database. This gives u
 * easier deployment
 * translate it using snippets
 * build your mail template using includes / extends / blocks / inheritance
+* usage of theme configuration
 
 ## Requirements
 
