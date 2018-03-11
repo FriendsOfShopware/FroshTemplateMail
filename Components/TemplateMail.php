@@ -67,6 +67,9 @@ class TemplateMail extends \Shopware_Components_TemplateMail
 
         if ($this->shop) {
             $this->updateMail($mailModel);
+
+            // Remove when PR https://github.com/shopware/shopware/pull/1520 is merged
+            $context['theme'] = $this->themeInheritance->buildConfig($this->getShop()->getTemplate(), $this->getShop(), false);
         }
 
         return parent::createMail($mailModel, $context, $shop, $overrideConfig);
