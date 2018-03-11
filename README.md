@@ -28,7 +28,7 @@ Example Mail **sORDER**
 
 You can also implement your custom loader. Create a new class and implement the interface `FroshTemplateMail/Components/Loader/MailLoaderInterface` and register it using tag `frosh_template_mail.loader`.
 
-**Exmaple**
+**Example**
 
 ```php
 <?php
