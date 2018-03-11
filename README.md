@@ -6,6 +6,11 @@ This plugin allows to store the mails in theme instead of database. This gives u
 * translate it using snippets
 * build your mail template using includes / extends / blocks / inheritance
 
+## Requirements
+
+* Shopware 5.4.x or higher
+* PHP 7.0
+
 ## Template location
 
 Example Mail **sORDER**
