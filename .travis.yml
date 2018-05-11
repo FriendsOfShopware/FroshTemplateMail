@@ -42,6 +42,6 @@ deploy:
   api_key:
     secure: E7uPoqd/rGd8M6DbfcLp1a8ybJYcv3umG8eOnArJMxezAMKwGQJE96uxaRLjeOqVwwVZnZ4m6aXiHTW0EO++BK17rVtZV+xQhQzI1XCdDZDB+iHoLYm0xf3vx3G3KOO9keDGgnKtAe+AoaKBEMtsqVJRszp7FkdU5vi9kzMbmDbU27HTchyuupvuDX5XkEY7txnBF2WCQ6jFDj+CQkzo/bgXt2etVyBQr+R0UT1IMTDz+F5Bi/g2RG0Hl8p05knVvym8oMWmaKFHg5OWpXCvs/uU8IDSRAYb53ZqsAB5svhS6xGwF9nEGCgOizGhJPDGjCzByqvuWeLp7nYZZSD1UnQifc0xuLXmkz0S02gwh2LWtxCFycqC9T3vyauazapSPnDwcKQcX+vLbr+f5TtiPiYsY0ESQXVsWuSctJPqOcNeeMpmo84P+7D351Lnz4alzu+8A6aTV4B3X8vkcUARBeyhKJ0LypMSyHr/yomN83tU9FK5VWKsgAnFvd2BrI15rTNkcBhHbCgbSqMBQyWsO5sMxZxkX9Jp4VIsl/bGS0I+YROfZtRys0p0enA5j7fW2G9Abk5GpPvW8TagN/zzpG/dQLXVwsTYeXsb5Dbr/j+AwgEfQTf2NYiYkW+YvOXSFCds8jWXqlfnHemxSzXxyWPQHK5KZfXoNe1VhbrQiOg=
   file_glob: true
-  file: FroshProfiler*.zip
+  file: FroshTemplateMail*.zip
   on:
     tags: true
