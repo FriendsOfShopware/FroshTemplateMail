@@ -6,6 +6,7 @@ use Enlight_Template_Manager as Template;
 use FroshTemplateMail\Components\Loader\MailLoaderInterface;
 use RuntimeException;
 use Shopware\Models\Mail\Mail;
+use Shopware\Models\Shop\Shop;
 
 /**
  * Class TemplateMailLoader
@@ -47,28 +48,29 @@ class TemplateMailLoader
     /**
      * @param Mail     $mail
      * @param Template $template
+     * @param Shop $shop
      *
      * @author Soner Sayakci <shyim@posteo.de>
      *
      * @return bool
      */
-    public function loadMail(Mail $mail, Template $template): bool
+    public function loadMail(Mail $mail, Template $template, Shop $shop): bool
     {
         $this->template = $template;
 
         $wasSuccessfull = false;
 
-        if ($subject = $this->load('subject', $mail)) {
+        if ($subject = $this->load('subject', $mail, $shop)) {
             $mail->setSubject($subject);
             $wasSuccessfull = true;
         }
 
-        if ($text = $this->load('text', $mail)) {
+        if ($text = $this->load('text', $mail, $shop)) {
             $mail->setContent($text);
             $wasSuccessfull = true;
         }
 
-        if ($html = $this->load('html', $mail)) {
+        if ($html = $this->load('html', $mail, $shop)) {
             $mail->setIsHtml(true);
             $mail->setContentHtml($html);
             $wasSuccessfull = true;
@@ -80,19 +82,29 @@ class TemplateMailLoader
     /**
      * @param string $type
      * @param Mail   $mail
+     * @param Shop   $shop
      *
      * @return string
      *
      * @author Soner Sayakci <shyim@posteo.de>
      */
-    private function load(string $type, Mail $mail)
+    private function load(string $type, Mail $mail, Shop $shop)
     {
         foreach ($this->extensions as $extension => $loader) {
-            $fileName = sprintf('email/%s.%s.%s', $mail->getName(), $type, $extension);
-            $filePath = $this->fileExists($fileName);
+            $fileNameLanguage = sprintf('email/%s-%d.%s.%s', $mail->getName(), $shop->getId(), $type, $extension);
+            $fileNameShop = sprintf('email/%s-%d.%s.%s', $mail->getName(), $shop->getMain() ? $shop->getMain()->getId() : $shop->getId(), $type,  $extension);
+            $fileNameFallback = sprintf('email/%s.%s.%s', $mail->getName(), $type, $extension);
 
-            if ($filePath) {
-                return $loader->loadMail($mail, $fileName, $filePath);
+            if ($filePath = $this->fileExists($fileNameLanguage)) {
+                return $loader->loadMail($mail, $fileNameLanguage, $filePath);
+            }
+
+            if ($filePath = $this->fileExists($fileNameShop)) {
+                return $loader->loadMail($mail, $fileNameShop, $filePath);
+            }
+
+            if ($filePath = $this->fileExists($fileNameFallback)) {
+                return $loader->loadMail($mail, $fileNameFallback, $filePath);
             }
         }
 

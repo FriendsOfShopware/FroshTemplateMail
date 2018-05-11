@@ -86,7 +86,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
     {
         $this->updateTemplateDirs();
 
-        if ($this->loader->loadMail($mailModel, $this->getTemplate())) {
+        if ($this->loader->loadMail($mailModel, $this->getTemplate(), $this->shop)) {
             $this->getTranslationReader()->delete(null, 'config_mails', $mailModel->getId());
         }
     }
