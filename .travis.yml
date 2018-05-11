@@ -36,6 +36,8 @@ script:
 matrix:
   allow_failures:
   - env: SHOPWARE_VERSION="5.5"
+after_success:
+  - ./build.sh $TRAVIS_TAG
 deploy:
   skip_cleanup: true
   provider: releases
