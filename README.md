@@ -19,18 +19,15 @@ Create a mail for a specific subshop or language shop (also inheritance in shops
 Search order in example with sOrder:
 
 * HTML Template
-  * themes/Frontend/MyTheme/email/sORDER-SHOPID.html.tpl (Language ID)
-  * themes/Frontend/MyTheme/email/sORDER-SHOPID.html.tpl (Subshop ID)
+  * themes/Frontend/MyTheme/email/sORDER-SHOPID.html.tpl (Shop ID)
   * themes/Frontend/MyTheme/email/sORDER.html.tpl (Default)
   * Database saved values
 * Text Template
-  * themes/Frontend/MyTheme/email/sORDER-SHOPID.text.tpl (Language ID)
-  * themes/Frontend/MyTheme/email/sORDER-SHOPID.text.tpl (Subshop ID)
+  * themes/Frontend/MyTheme/email/sORDER-SHOPID.text.tpl (Shop ID)
   * themes/Frontend/MyTheme/email/sORDER.text.tpl (Default)
   * Database saved values
 * Subject Template
-  * themes/Frontend/MyTheme/email/sORDER-SHOPID.subject.tpl (Language ID)
-  * themes/Frontend/MyTheme/email/sORDER-SHOPID.subject.tpl (Subshop ID)
+  * themes/Frontend/MyTheme/email/sORDER-SHOPID.subject.tpl (Shop ID)
   * themes/Frontend/MyTheme/email/sORDER.subject.tpl (Default)
   * Database saved values
 
