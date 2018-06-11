@@ -12,5 +12,9 @@
         <service id="frosh_template_mail.loader.smarty" class="FroshTemplateMail\Components\Loader\SmartyLoader">
             <tag name="frosh_template_mail.loader"/>
         </service>
+
+        <service id="frosh_template_mail.command.export" class="FroshTemplateMail\Commands\ExportMailTemplatesCommand">
+            <tag name="console.command"/>
+        </service>
     </services>
 </container>
