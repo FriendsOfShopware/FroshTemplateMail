@@ -1,4 +1,6 @@
-# Store mail templates in theme
+# Store Shopware mail templates in theme
+
+[![Join the chat at https://gitter.im/FriendsOfShopware/Lobby](https://badges.gitter.im/FriendsOfShopware/Lobby.svg)](https://gitter.im/FriendsOfShopware/Lobby)
 
 This plugin allows to store the mails in theme instead of database. This gives us advantages like
 
@@ -7,10 +9,18 @@ This plugin allows to store the mails in theme instead of database. This gives u
 * build your mail template using includes / extends / blocks / inheritance
 * usage of theme configuration
 
+
 ## Requirements
 
-* Shopware 5.4.x or higher
-* PHP 7.0
+- Shopware 5.4.x or higher
+- PHP 7.0
+
+
+## Installation
+
+- Download latest release
+- Extract the zip file in `shopware_folder/custom/plugins/`
+
 
 ## Template location
 
@@ -36,7 +46,8 @@ Search order in example with sOrder:
 ### Available loaders
 
 * [MJML](https://github.com/FriendsOfShopware/FroshTemplateMailMjml)
-  
+
+
 ### Write your own loader
 
 You can also implement your custom loader. Create a new class and implement the interface `FroshTemplateMail/Components/Loader/MailLoaderInterface` and register it using tag `frosh_template_mail.loader`.
@@ -77,3 +88,13 @@ class TwigMailLoader implements MailLoaderInterface {
     <tag name="frosh_template_mail.loader"/>
 </service>
 ```
+
+
+## Contributing
+
+Feel free to fork and send pull requests!
+
+
+## Licence
+
+This project uses the [MIT License](LICENCE.md).
