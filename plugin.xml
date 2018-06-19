@@ -6,7 +6,7 @@
     <version>1.0.0</version>
     <copyright>Friends of Shopware</copyright>
     <license>MIT</license>
-    <link>https://friendsofshopware.github.io/</link>
+    <link>https://github.com/FriendsOfShopware/FroshTemplateMail/</link>
     <author>Friends of Shopware</author>
     <description>
         <![CDATA[
@@ -19,4 +19,9 @@
         ]]>
     </description>
     <compatibility minVersion="5.4.0"/>
+
+    <changelog version="1.0.0">
+        <changes lang="de">Initiales Release</changes>
+        <changes lang="en">Initial release</changes>
+    </changelog>
 </plugin>
