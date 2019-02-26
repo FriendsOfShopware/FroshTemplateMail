@@ -54,7 +54,7 @@ class TemplateMailLoader
      *
      * @return bool
      */
-    public function loadMail(Mail $mail, Template $template, Shop $shop): bool
+    public function loadMail(Mail $mail, Template $template, Shop $shop)
     {
         $this->template = $template;
 
