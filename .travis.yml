@@ -1,43 +1,90 @@
 language: php
+
 php:
-- 7.0
-- 7.1
-- 7.2
+  - 7.0
+  - 7.1
+  - 7.2
+
 sudo: false
+
 services:
-- mysql
+  - mysql
+
 env:
   matrix:
-  - SHOPWARE_VERSION="5.4"
-  - SHOPWARE_VERSION="5.5"
+    - SHOPWARE_VERSION="5.4"
+    - SHOPWARE_VERSION="5.5"
   global:
-  - PLUGIN_NAME=FroshTemplateMail
-  - SHOPWARE_DIRECTORY="${HOME}/shopware"
-  - PLUGIN_DIRECTORY="${SHOPWARE_DIRECTORY}/custom/plugins"
-cache:
-  directories:
-  - "${HOME}/.composer/cache/files"
-install:
-- composer install
-before_script:
-- if [[ "$(php --version | grep -cim1 xdebug)" -ge 1 ]]; then phpenv config-rm xdebug.ini;
-  fi
-- git clone https://github.com/shopware/shopware.git ${SHOPWARE_DIRECTORY} --branch
-  ${SHOPWARE_VERSION}
-- ant -f ${SHOPWARE_DIRECTORY}/build/build.xml -Dapp.host=localhost -Ddb.user=travis
-  -Ddb.host=127.0.0.1 -Ddb.name=shopware build-unit
-- mv ${TRAVIS_BUILD_DIR} ${PLUGIN_DIRECTORY}/${PLUGIN_NAME}
-- php ${HOME}/shopware/bin/console sw:plugin:refresh
-- php ${HOME}/shopware/bin/console sw:plugin:install ${PLUGIN_NAME}
-- php ${HOME}/shopware/bin/console sw:plugin:activate ${PLUGIN_NAME}
-- cd ${PLUGIN_DIRECTORY}/${PLUGIN_NAME}
-script:
-- composer test
+    - PLUGIN_NAME=FroshTemplateMail
+    - SHOPWARE_DIRECTORY="${HOME}/shopware"
+    - PLUGIN_DIRECTORY="${SHOPWARE_DIRECTORY}/custom/plugins"
+
 matrix:
   allow_failures:
-  - env: SHOPWARE_VERSION="5.5"
+    - env: SHOPWARE_VERSION="5.5"
+
+stages:
+  - tests
+  - name: Store-Check
+    if: tag IS blank AND env(PLUGIN_ID) IS present AND type != pull_request
+  - name: Store-Sync
+    if: branch = master AND env(PLUGIN_ID) IS present AND type != pull_request
+  - name: Store-Deploy
+    if: tag IS present
+
+
+cache:
+  directories:
+    - "${HOME}/.composer/cache/files"
+
+install:
+  - composer install
+
+before_script:
+  - if [[ "$(php --version | grep -cim1 xdebug)" -ge 1 ]]; then phpenv config-rm xdebug.ini;
+    fi
+  - git clone https://github.com/shopware/shopware.git ${SHOPWARE_DIRECTORY} --branch
+    ${SHOPWARE_VERSION}
+  - ant -f ${SHOPWARE_DIRECTORY}/build/build.xml -Dapp.host=localhost -Ddb.user=travis
+    -Ddb.host=127.0.0.1 -Ddb.name=shopware build-unit
+  - mv ${TRAVIS_BUILD_DIR} ${PLUGIN_DIRECTORY}/${PLUGIN_NAME}
+  - php ${HOME}/shopware/bin/console sw:plugin:refresh
+  - php ${HOME}/shopware/bin/console sw:plugin:install ${PLUGIN_NAME}
+  - php ${HOME}/shopware/bin/console sw:plugin:activate ${PLUGIN_NAME}
+  - cd ${PLUGIN_DIRECTORY}/${PLUGIN_NAME}
+
 after_success:
   - ./build.sh $TRAVIS_TAG
+
+jobs:
+  include:
+    - stage: Store-Check
+      php: 7.3
+      before_script: skip
+      install:
+        - ./build.sh "master"
+        - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/0.1.1/frosh-plugin-upload.phar' -O frosh-plugin-upload.phar
+      script:
+        - php frosh-plugin-upload.phar plugin:validate ${TRAVIS_BUILD_DIR}/${PLUGIN_NAME}*.zip
+    - stage: Store-Sync
+      before_script: skip
+      php: 7.3
+      install:
+        - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/0.1.1/frosh-plugin-upload.phar' -O frosh-plugin-upload.phar
+      script:
+        - php frosh-plugin-upload.phar plugin:update ${TRAVIS_BUILD_DIR}/Resources/store
+    - stage: Store-Deploy
+      before_script: skip
+      php: 7.3
+      install:
+        - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/0.1.1/frosh-plugin-upload.phar' -O frosh-plugin-upload.phar
+      script:
+        - ./build.sh
+        - php frosh-plugin-upload.phar plugin:upload ${TRAVIS_BUILD_DIR}/${PLUGIN_NAME}*.zip
+
+script:
+  - composer test
+
 deploy:
   skip_cleanup: true
   provider: releases
