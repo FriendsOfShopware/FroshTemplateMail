@@ -18,7 +18,7 @@ interface MailLoaderInterface
      *
      * @author Soner Sayakci <shyim@posteo.de>
      */
-    public function canHandleExtensions(): array;
+    public function canHandleExtensions();
 
     /**
      * @param Mail   $mail
