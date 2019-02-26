@@ -29,5 +29,5 @@ interface MailLoaderInterface
      *
      * @author Soner Sayakci <shyim@posteo.de>
      */
-    public function loadMail(Mail $mail, string $templatePath, string $resolvedTemplatePath): string;
+    public function loadMail(Mail $mail, $templatePath, $resolvedTemplatePath);
 }

@@ -18,7 +18,7 @@ class SmartyLoader implements MailLoaderInterface
      *
      * @author Soner Sayakci <shyim@posteo.de>
      */
-    public function canHandleExtensions(): array
+    public function canHandleExtensions()
     {
         return ['tpl'];
     }
@@ -32,7 +32,7 @@ class SmartyLoader implements MailLoaderInterface
      *
      * @author Soner Sayakci <shyim@posteo.de>
      */
-    public function loadMail(Mail $mail, string $templatePath, string $resolvedTemplatePath): string
+    public function loadMail(Mail $mail, $templatePath, $resolvedTemplatePath)
     {
         return sprintf('{include file="%s"}', $templatePath);
     }
