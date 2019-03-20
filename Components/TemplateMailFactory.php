@@ -18,7 +18,7 @@ class TemplateMailFactory
         $container->load('MailTransport');
 
         $stringCompiler = new \Shopware_Components_StringCompiler(
-            $container->get('Template')
+            clone $container->get('Template')
         );
         $mailer = new TemplateMail(
             $container->get('theme_inheritance'),
