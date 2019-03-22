@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">FroshTemplateMail</label>
     <label lang="en">FroshTemplateMail</label>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <copyright>Friends of Shopware</copyright>
     <license>MIT</license>
     <link>https://github.com/FriendsOfShopware/FroshTemplateMail/</link>
@@ -26,5 +26,10 @@
     <changelog version="1.0.1">
         <changes lang="de">Erster Release im Community Store</changes>
         <changes lang="en">First Release in Community Store</changes>
+    </changelog>
+    
+    <changelog version="1.0.2">
+        <changes lang="de">Template Ordner verschwinden Bug behoben</changes>
+        <changes lang="en">Fixed a error where template folders are getting deleted</changes>
     </changelog>
 </plugin>
