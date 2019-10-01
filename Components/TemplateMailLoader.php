@@ -32,7 +32,7 @@ class TemplateMailLoader
      *
      * @param MailLoaderInterface[] $loaders
      */
-    public function __construct(array $loaders = [])
+    public function __construct(iterable $loaders = [])
     {
         foreach ($loaders as $loader) {
             foreach ($loader->canHandleExtensions() as $extension) {

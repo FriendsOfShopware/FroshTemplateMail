@@ -6,7 +6,7 @@
 
     <services>
         <service id="frosh_template_mail.template_mail_loader" class="FroshTemplateMail\Components\TemplateMailLoader">
-            <argument type="collection"/>
+            <argument type="tagged" tag="frosh_template_mail.loader"/>
         </service>
 
         <service id="frosh_template_mail.loader.smarty" class="FroshTemplateMail\Components\Loader\SmartyLoader">

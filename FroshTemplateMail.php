@@ -21,6 +21,5 @@ class FroshTemplateMail extends Plugin
     {
         parent::build($container);
         $container->addCompilerPass(new ReplaceTemplateMailFactoryPass());
-        $container->addCompilerPass(new MailLoaderCompilerPass());
     }
 }

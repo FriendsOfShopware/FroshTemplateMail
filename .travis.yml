@@ -1,8 +1,6 @@
 language: php
 
 php:
-  - 7.0
-  - 7.1
   - 7.2
 
 sudo: false
@@ -12,16 +10,11 @@ services:
 
 env:
   matrix:
-    - SHOPWARE_VERSION="5.4"
-    - SHOPWARE_VERSION="5.5"
+    - SHOPWARE_VERSION="5.6"
   global:
     - PLUGIN_NAME=FroshTemplateMail
     - SHOPWARE_DIRECTORY="${HOME}/shopware"
     - PLUGIN_DIRECTORY="${SHOPWARE_DIRECTORY}/custom/plugins"
-
-matrix:
-  allow_failures:
-    - env: SHOPWARE_VERSION="5.5"
 
 stages:
   - tests
@@ -63,34 +56,24 @@ jobs:
       before_script: skip
       install:
         - ./build.sh "master"
-        - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/0.1.1/frosh-plugin-upload.phar' -O frosh-plugin-upload.phar
+        - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/0.2.1/frosh-plugin-upload.phar' -O frosh-plugin-upload.phar
       script:
         - php frosh-plugin-upload.phar plugin:validate ${TRAVIS_BUILD_DIR}/${PLUGIN_NAME}*.zip
     - stage: Store-Sync
       before_script: skip
       php: 7.3
       install:
-        - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/0.1.1/frosh-plugin-upload.phar' -O frosh-plugin-upload.phar
+        - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/0.2.1/frosh-plugin-upload.phar' -O frosh-plugin-upload.phar
       script:
         - php frosh-plugin-upload.phar plugin:update ${TRAVIS_BUILD_DIR}/Resources/store
     - stage: Store-Deploy
       before_script: skip
       php: 7.3
       install:
-        - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/0.1.1/frosh-plugin-upload.phar' -O frosh-plugin-upload.phar
+        - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/0.2.1/frosh-plugin-upload.phar' -O frosh-plugin-upload.phar
       script:
         - ./build.sh
         - php frosh-plugin-upload.phar plugin:upload ${TRAVIS_BUILD_DIR}/${PLUGIN_NAME}*.zip
 
 script:
   - composer test
-
-deploy:
-  skip_cleanup: true
-  provider: releases
-  api_key:
-    secure: E7uPoqd/rGd8M6DbfcLp1a8ybJYcv3umG8eOnArJMxezAMKwGQJE96uxaRLjeOqVwwVZnZ4m6aXiHTW0EO++BK17rVtZV+xQhQzI1XCdDZDB+iHoLYm0xf3vx3G3KOO9keDGgnKtAe+AoaKBEMtsqVJRszp7FkdU5vi9kzMbmDbU27HTchyuupvuDX5XkEY7txnBF2WCQ6jFDj+CQkzo/bgXt2etVyBQr+R0UT1IMTDz+F5Bi/g2RG0Hl8p05knVvym8oMWmaKFHg5OWpXCvs/uU8IDSRAYb53ZqsAB5svhS6xGwF9nEGCgOizGhJPDGjCzByqvuWeLp7nYZZSD1UnQifc0xuLXmkz0S02gwh2LWtxCFycqC9T3vyauazapSPnDwcKQcX+vLbr+f5TtiPiYsY0ESQXVsWuSctJPqOcNeeMpmo84P+7D351Lnz4alzu+8A6aTV4B3X8vkcUARBeyhKJ0LypMSyHr/yomN83tU9FK5VWKsgAnFvd2BrI15rTNkcBhHbCgbSqMBQyWsO5sMxZxkX9Jp4VIsl/bGS0I+YROfZtRys0p0enA5j7fW2G9Abk5GpPvW8TagN/zzpG/dQLXVwsTYeXsb5Dbr/j+AwgEfQTf2NYiYkW+YvOXSFCds8jWXqlfnHemxSzXxyWPQHK5KZfXoNe1VhbrQiOg=
-  file_glob: true
-  file: FroshTemplateMail*.zip
-  on:
-    tags: true
