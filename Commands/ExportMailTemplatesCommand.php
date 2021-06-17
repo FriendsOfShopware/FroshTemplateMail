@@ -64,5 +64,7 @@ class ExportMailTemplatesCommand extends ShopwareCommand
 
         $io = new SymfonyStyle($input, $output);
         $io->success(sprintf('Exported %d mail templates from database to "%s"', count($mailTemplates), realpath($folder)));
+
+        return 0;
     }
 }

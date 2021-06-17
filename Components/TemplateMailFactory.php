@@ -18,16 +18,16 @@ class TemplateMailFactory
         $container->load('MailTransport');
 
         $stringCompiler = new \Shopware_Components_StringCompiler(
-            clone $container->get('Template')
+            clone $container->get('template')
         );
         $mailer = new TemplateMail(
             $container->get('theme_inheritance'),
             $container->get('frosh_template_mail.template_mail_loader')
         );
-        if ($container->initialized('Shop')) {
-            $mailer->setShop($container->get('Shop'));
+        if ($container->initialized('shop')) {
+            $mailer->setShop($container->get('shop'));
         }
-        $mailer->setModelManager($container->get('Models'));
+        $mailer->setModelManager($container->get('models'));
         $mailer->setStringCompiler($stringCompiler);
 
         return $mailer;
