@@ -25,7 +25,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
     /**
      * TemplateMail constructor.
      *
-     * @param Inheritance        $inheritance
+     * @param Inheritance $inheritance
      * @param TemplateMailLoader $loader
      *
      * @author Soner Sayakci <shyim@posteo.de>
@@ -38,15 +38,15 @@ class TemplateMail extends \Shopware_Components_TemplateMail
 
     /**
      * @param \Shopware\Models\Mail\Mail|string $mailModel
-     * @param array                             $context
-     * @param null                              $shop
-     * @param array                             $overrideConfig
-     *
-     * @throws \Enlight_Exception
-     * @throws \Exception
+     * @param array $context
+     * @param null $shop
+     * @param array $overrideConfig
      *
      * @return \Enlight_Components_Mail
      *
+     * @throws \Exception
+     *
+     * @throws \Enlight_Exception
      * @author Soner Sayakci <shyim@posteo.de>
      */
     public function createMail($mailModel, $context = [], $shop = null, $overrideConfig = [])
@@ -68,7 +68,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
             $this->updateMail($mailModel);
 
             // Remove when PR https://github.com/shopware/shopware/pull/1520 is merged
-            $context['theme'] = $this->themeInheritance->buildConfig($this->getShop()->getTemplate(), $this->getShop(), false);
+            $context['theme'] = $this->themeInheritance->buildConfig($this->getTemplateDir(), $this->getShop(), false);
         }
 
         return parent::createMail($mailModel, $context, $shop, $overrideConfig);
@@ -77,10 +77,10 @@ class TemplateMail extends \Shopware_Components_TemplateMail
     /**
      * @param Mail $mailModel
      *
-     * @author Soner Sayakci <shyim@posteo.de>
-     *
      * @throws \Enlight_Event_Exception
      * @throws \Exception
+     * @author Soner Sayakci <shyim@posteo.de>
+     *
      */
     private function updateMail(Mail $mailModel)
     {
@@ -98,7 +98,7 @@ class TemplateMail extends \Shopware_Components_TemplateMail
      */
     private function updateTemplateDirs()
     {
-        $templateDirs = $this->themeInheritance->getTemplateDirectories($this->getShop()->getTemplate());
+        $templateDirs = $this->themeInheritance->getTemplateDirectories($this->getTemplateDir());
         $this->getTemplate()->setTemplateDir($templateDirs);
     }
 
@@ -110,5 +110,15 @@ class TemplateMail extends \Shopware_Components_TemplateMail
     private function getTemplate()
     {
         return $this->getStringCompiler()->getView();
+    }
+
+    private function getTemplateDir()
+    {
+        if ((($theme = $this->getShop()->getTemplate()) === null)
+            && $this->getShop()->getMain()
+            && ($theme = $this->getShop()->getMain()->getTemplate()) === null) {
+            return null;
+        }
+        return $theme;
     }
 }
