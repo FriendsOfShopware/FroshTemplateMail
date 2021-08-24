@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">FroshTemplateMail</label>
     <label lang="en">FroshTemplateMail</label>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <copyright>Friends of Shopware</copyright>
     <license>MIT</license>
     <link>https://github.com/FriendsOfShopware/FroshTemplateMail/</link>
@@ -41,5 +41,10 @@
     <changelog version="1.1.1">
         <changes lang="de">Shopware 5.7 Kompatiblität</changes>
         <changes lang="en">Shopware 5.7 Compability</changes>
+    </changelog>
+
+    <changelog version="1.1.2">
+        <changes lang="de">Kompatiblität verbessert</changes>
+        <changes lang="en">Compability improved</changes>
     </changelog>
 </plugin>
