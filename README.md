@@ -1,7 +1,7 @@
 # Store Shopware mail templates in theme
 
 [![Join the chat at https://gitter.im/FriendsOfShopware/Lobby](https://badges.gitter.im/FriendsOfShopware/Lobby.svg)](https://gitter.im/FriendsOfShopware/Lobby)
-[![Download @ Community Store](https://img.shields.io/badge/endpoint.svg?url=https://api.friendsofshopware.com/FroshTemplateMail)](https://store.shopware.com/frosh46026077660f/froshtemplatemail.html)
+[![Download @ Community Store](https://api.friendsofshopware.com/v2/shopware/badge/FroshTemplateMail)](https://store.shopware.com/frosh46026077660f/froshtemplatemail.html)
 
 This plugin allows to store the mails in theme instead of database. This gives us advantages like
 
