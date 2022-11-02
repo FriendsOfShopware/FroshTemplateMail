@@ -3,39 +3,29 @@
         xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">FroshTemplateMail</label>
     <label lang="en">FroshTemplateMail</label>
-    <version>1.1.2</version>
+    <version>1.2.0</version>
     <copyright>Friends of Shopware</copyright>
     <license>MIT</license>
     <link>https://github.com/FriendsOfShopware/FroshTemplateMail/</link>
     <author>Friends of Shopware</author>
+    <compatibility minVersion="5.7.0"/>
     <description>
-        <![CDATA[
-            Store emails in theme and allow translations using snippets
-        ]]>
+        Store email templates in themes and allow translations using snippets.
+        So your email templates are versioned, can inherit from each other and the app also supports loaders.
     </description>
     <description lang="de">
-        Speichere Email Templates in Theme und erlaube Übersetzungen via Textbausteine
+        Speichere E-Mail-Templates in Themes und erlaube Übersetzungen via Textbausteine.
+        Somit sind deine E-Mail-Templates versioniert und die App unterstützt ebenfalls Loader.
     </description>
-    <compatibility minVersion="5.6.0"/>
 
-    <changelog version="1.0.0">
-        <changes lang="de">Initiales Release</changes>
-        <changes lang="en">Initial release</changes>
+    <changelog version="1.2.0">
+        <changes lang="de">Support PHP 8.x ergänzt</changes>
+        <changes lang="en">Support PHP 8.x added</changes>
     </changelog>
 
-    <changelog version="1.0.1">
-        <changes lang="de">Erster Release im Community Store</changes>
-        <changes lang="en">First Release in Community Store</changes>
-    </changelog>
-
-    <changelog version="1.0.2">
-        <changes lang="de">Template Ordner verschwinden Bug behoben</changes>
-        <changes lang="en">Fixed a error where template folders are getting deleted</changes>
-    </changelog>
-
-    <changelog version="1.1.0">
-        <changes lang="de">Shopware 5.6 Kompatiblität</changes>
-        <changes lang="en">Shopware 5.6 Compability</changes>
+    <changelog version="1.1.2">
+        <changes lang="de">Kompatiblität verbessert</changes>
+        <changes lang="en">Compability improved</changes>
     </changelog>
 
     <changelog version="1.1.1">
@@ -43,8 +33,24 @@
         <changes lang="en">Shopware 5.7 Compability</changes>
     </changelog>
 
-    <changelog version="1.1.2">
-        <changes lang="de">Kompatiblität verbessert</changes>
-        <changes lang="en">Compability improved</changes>
+    <changelog version="1.1.0">
+        <changes lang="de">Shopware 5.6 Kompatiblität</changes>
+        <changes lang="en">Shopware 5.6 Compability</changes>
     </changelog>
+
+    <changelog version="1.0.2">
+        <changes lang="de">Template Ordner verschwinden Bug behoben</changes>
+        <changes lang="en">Fixed a error where template folders are getting deleted</changes>
+    </changelog>
+
+    <changelog version="1.0.1">
+        <changes lang="de">Erster Release im Community Store</changes>
+        <changes lang="en">First Release in Community Store</changes>
+    </changelog>
+
+    <changelog version="1.0.0">
+        <changes lang="de">Initiales Release</changes>
+        <changes lang="en">Initial release</changes>
+    </changelog>
+
 </plugin>
